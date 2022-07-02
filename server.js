@@ -21,7 +21,7 @@ app.use('/api/products', require('./routes/productRoutes'))
 app.use('/api/users', require('./routes/userRoutes'))
 app.use('/api/auth', require('./routes/auth'))
 app.use('/api/private', require('./routes/private'))
-
+app.use('/api/orders', require('./routes/orderRoutes'))
 //Error Handler should be last piece of middleware
 
 app.use(errorHandler);

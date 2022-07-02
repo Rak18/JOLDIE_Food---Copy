@@ -1,10 +1,16 @@
 import React from 'react'
 import { Button } from "react-bootstrap";
 import StripeCheckout from "react-stripe-checkout";
-import { useDispatch } from "react-redux"
+import { useSelector,useDispatch } from "react-redux"
 import { placeOrder } from "../redux/actions/orderAction"
+import Loader from "./Loader";
+import Error from "./Error";
+import Success from "./Success";
 
 const Checkout = ({getCartSubTotal}) => {
+
+  const orderState = useSelector((state) => state.placeOrderReducer);
+  const { loading, error, success } = orderState;
 
     const dispatch = useDispatch();
     const tokenHandler = (token) => {

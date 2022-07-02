@@ -10,6 +10,7 @@ import Product from "../components/Product";
 import { getProducts as listProducts } from "../redux/actions/productActions";
 import HeroPage from '../components/HeroPage';
 import Loader from '../components/Loader';
+import { Container } from 'react-bootstrap';
 
 
 export const HomeScreen = () => {
@@ -24,6 +25,8 @@ export const HomeScreen = () => {
   }, [dispatch]);
 
   return (
+    <>
+    <Container>
     <div className="homescreen">
         <HeroPage />
         <div style={{marginTop:'2rem'}}/>
@@ -49,6 +52,8 @@ export const HomeScreen = () => {
       </div>
      
     </div>
+    </Container>
+    </>
    
   );
 };

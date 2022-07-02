@@ -5,6 +5,10 @@ import { Link } from "react-router-dom";
 import "./RegisterScreen.css";
 import { useSelector, useDispatch } from "react-redux";
 import { registerUser } from '../redux/actions/userAction'
+import Loader from '../components/Loader';
+import Success from '../components/Success'
+import Error from '../components/Error'
+import { Container } from 'react-bootstrap';
 
 const RegisterScreen = ({ history }) => {
   const [username, setUsername] = useState("");
@@ -13,10 +17,13 @@ const RegisterScreen = ({ history }) => {
   const [confirmpassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
 
+
+
   //create dispatch
   const dispatch = useDispatch()
-  // const registerState = useSelector((state) => state.registerUserReducer);
-  // const { error, success, loading } = registerState;
+
+  const registerState = useSelector((state) => state.registerUserReducer);
+  const { success, loading } = registerState;
 
   // useEffect(() => {
   //   if (localStorage.getItem("authToken")) {
@@ -66,7 +73,12 @@ const RegisterScreen = ({ history }) => {
   };
 
   return (
-    <div className="register-screen">
+    <>
+    <Container>
+      { loading && <Loader />}
+      { success && < Success success="User Register Successfully"/>}
+      { error && <Error error="Something Went Wrong"/>}
+      <div className="register-screen">
       <form onSubmit={registerHandler} className="register-screen__form">
         <h3 className="register-screen__title">Register</h3>
         {error && <span className="error-message">{error}</span>}
@@ -119,7 +131,8 @@ const RegisterScreen = ({ history }) => {
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
         </div>
-        <button type="submit" className="btn btn-primary">
+        {/* <button type="submit" className="btn btn-primary"> */}
+        <button  className="btn btn-primary" onClick={registerHandler}>
         {/* <button  className="btn btn-primary"> */}
           Register
         </button>
@@ -128,6 +141,8 @@ const RegisterScreen = ({ history }) => {
         </span>
       </form>
     </div>
+    </Container>
+    </>
   );
 };
 

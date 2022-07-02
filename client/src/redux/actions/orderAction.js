@@ -7,7 +7,7 @@
 //     const currentUser = getState().loginUserReducer.currentUser;
 //     const cartItems = getState().cartReducer.cartItems;
 //     try {
-//        const res =  await axios.post("/api/orders/placeorder", {
+//        const {res} =  await axios.post("/api/orders/placeorder", {
 //       token,
 //       getCartSubTotal,
 //       currentUser,
