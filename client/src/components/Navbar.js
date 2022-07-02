@@ -28,29 +28,6 @@ export const Navbar = ({ click }) => {
     <ul className="navbar__links">
       <li>
 
-      {
-      currentUser ? (
-                <Link  to ="/" >
-                  <li> {currentUser.name} </li>
-                    </Link > ) : ( <> <li>
-      <button onClick={()=>history.push('/login')} className="login_btn">Login</button>
-      </li> </>)
-}
-                      {/* <NavDropdown.Item>orders</NavDropdown.Item> */}
-                    {/* </LinkContainer>
-                    <NavDropdown.Item
-                      onClick={() => {
-                        dispatch(logoutUser());
-                      }}
-                    >
-                      Logout
-                    </NavDropdown.Item>
-                  </NavDropdown>
-                </LinkContainer>
-              ) : (
-                <>
-                  {" "} */}
-         
         <Link to="/cart" className="cart__link">
           <i className="fas fa-shopping-cart" style={{color:'#e67e22'}}></i>
           <span>
@@ -59,9 +36,34 @@ export const Navbar = ({ click }) => {
         </Link>
         
       </li>
+
+      {
+      currentUser ? (
+                <Link  to ="/" >
+                  {/* <li> {currentUser.name} </li> */}
+                  
+                  <NavDropdown title={currentUser.name} id="basic-nav-dropdown">
+                      <NavDropdown.Item>orders</NavDropdown.Item>
+                      <NavDropdown.Item>Logout</NavDropdown.Item>
+                    {/* </LinkContainer> */}
+                    {/* <NavDropdown.Item
+                      onClick={() => {
+                        dispatch(logoutUser());
+                      }}
+                    >
+                      Logout
+                    </NavDropdown.Item> */}
+                  </NavDropdown>
+                  
+                    </Link > ) : ( <> {" "}  <li>
+      <button onClick={()=>history.push('/login')} className="login_btn">Login</button>
+      </li> </>)
+}
+
       {/* <li>
       <button onClick={()=>history.push('/login')} className="login_btn">Login</button>
       </li> */}
+
     </ul>
 
     <div className="hamburger__menu" onClick={click}>
@@ -72,3 +74,4 @@ export const Navbar = ({ click }) => {
   </nav>
   );
 };
+
